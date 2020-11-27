@@ -2,5 +2,5 @@
 
 Generative Audio Project
 
-- Potentially apply Generative Adversarial Networks to sound samples/audio 
+- Potentially apply Generative Adversarial Networks (GAN's) to sound samples/audio 
 -  
