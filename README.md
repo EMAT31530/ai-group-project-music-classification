@@ -3,4 +3,4 @@
 Generative Audio Project
 
 - Potentially apply Generative Adversarial Networks (GAN's) to sound samples/audio 
-- 
+- Video: Using GAN's to change music genre -https://www.youtube.com/watch?v=KMsFgts23x4&ab_channel=AIPursuit-YourDailyAIDigest
