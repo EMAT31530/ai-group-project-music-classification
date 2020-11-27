@@ -7,3 +7,4 @@ Generative Audio Project
 
 
 - TensorFLow - Tutorial : https://www.tensorflow.org/tutorials/keras/classification
+- Spotify (Klio) dataset : https://klio.readthedocs.io/en/latest/userguide/index.html
