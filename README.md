@@ -30,6 +30,7 @@ Spotify (Klio) dataset
 - Klio Documentation : https://klio.readthedocs.io/en/latest/userguide/index.html
 - Klio Github : https://github.com/spotify/klio
 - Google Pub/Sub tutorial (boring as shit needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
+- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
 
 
 Classifying Audio papers(from Ben)
