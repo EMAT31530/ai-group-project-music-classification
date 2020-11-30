@@ -14,9 +14,9 @@ Potential Current Plan
 
 Applications we could use the data for
 -------------
-- some guy has done a mapping of all the spotify data - pretty cool (type in your fave artist and it'll show you their specific genre and all the most similar artists to them) http://everynoise.com/#otherthings
+#### A map of all of spotify's data - pretty cool (type in your fave artist and it'll show you their specific genre and all the most similar artists to them) http://everynoise.com/#otherthings
 
-### Use Generative Adversarial Networks (GAN's) to create new raw audio
+#### Use Generative Adversarial Networks (GAN's) to create new raw audio
 - cool video: Using GAN's to turn jump-up DnB into liquid -https://www.youtube.com/watch?v=KMsFgts23x4&ab_channel=AIPursuit-YourDailyAIDigest
 - nice simple blogpost on gans https://jonathan-hui.medium.com/gan-whats-generative-adversarial-networks-and-its-application-f39ed278ef09
 - GANSynth - make one instrument sound like another: https://magenta.tensorflow.org/gansynth
