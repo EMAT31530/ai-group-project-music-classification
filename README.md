@@ -30,6 +30,7 @@ Spotify (Klio) dataset
 - Klio Audio Separation and Spectogram Example : https://docs.klio.io/en/latest/userguide/examples/audio_spec.html
 - Klio Documentation : https://klio.readthedocs.io/en/latest/userguide/index.html
 - Klio Github : https://github.com/spotify/klio
+- Lecture on using Apache Beam in Python : https://www.youtube.com/watch?v=I1JUtoDHFcg&ab_channel=PyConSG
 -- Google Pub/Sub tutorial (boring as shit needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
 -- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
 google account for data storage login : email: ai.music.generation@gmail.com password: McConville
