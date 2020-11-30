@@ -27,10 +27,12 @@ Useful Links for each section
 Spotify (Klio) dataset 
 -------------
 - Quickstart info https://docs.klio.io/en/latest/quickstart/index.html
+- Klio Audio Separation and Spectogram Example : https://docs.klio.io/en/latest/userguide/examples/audio_spec.html
 - Klio Documentation : https://klio.readthedocs.io/en/latest/userguide/index.html
 - Klio Github : https://github.com/spotify/klio
-- Google Pub/Sub tutorial (boring as shit needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
-- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
+-- Google Pub/Sub tutorial (boring as shit needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
+-- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
+google account for data storage login : email: ai.music.generation@gmail.com password: McConville
 
 
 Classifying Audio papers(from Ben)
