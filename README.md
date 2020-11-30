@@ -2,22 +2,23 @@
 
 Audio Project bits
 --------------------
-Possible Plan?
+Potential Current Plan
 -----------
 1) Call and extract data from spotify (Klio) data
 2) Learn how to create Spectograms from spotify audio data
 3) Create dataset of spectograms and useful spotify labels/attributes (artists, genre, year, liveliness, acoustic etc) 
-4) Create AI Model (TensorFLow?) to train on spectograms with labelsfrom spotify
-5) Use trained model to classify new audio from separate spotify song data
-6) What can we do with this?
+4) Create AI Model (TensorFLow?) to train on spectograms with labels from spotify
+5) Use this trained model to classify new audio from separate spotify song data
+6) What can we now do with this? 
 ...
 
-Possible Applications?
+Applications we could use the data for
 -------------
-- some guys mapping of all the spotify data - pretty cool applications http://everynoise.com/#otherthings
+- some guy has done a mapping of all the spotify data - pretty cool (type in your fave artist and it'll show you their specific genre and all the most similar artists to them) http://everynoise.com/#otherthings
 
 - Use Generative Adversarial Networks (GAN's) to create new raw audio
 - cool video: Using GAN's to turn jump-up DnB into liquid -https://www.youtube.com/watch?v=KMsFgts23x4&ab_channel=AIPursuit-YourDailyAIDigest
+- nice simple blogpost on gans https://jonathan-hui.medium.com/gan-whats-generative-adversarial-networks-and-its-application-f39ed278ef09
 - GANSynth - make one instrument sound like another: https://magenta.tensorflow.org/gansynth
 - Wavenet - generates raw audio, pretty demanding computationally : https://www.analyticsvidhya.com/blog/2020/01/how-to-perform-automatic-music-generation/
 
