@@ -4,7 +4,8 @@ Audio Project bits
 --------------------
 Potential Current Plan
 -----------
-1) Call and extract data from spotify (Klio) data
+https://cloud.google.com/blog/products/data-analytics/try-spotifys-internal-os-tool-for-media-processing-in-beam
+1) Call and extract data from spotify (Klio) data 
 2) Learn how to create Spectograms from spotify audio data
 3) Create dataset of spectograms and useful spotify labels/attributes (artists, genre, year, liveliness, acoustic etc) 
 4) Create AI Model (TensorFLow?) to train on spectograms with labels from spotify
