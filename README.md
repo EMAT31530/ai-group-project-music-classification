@@ -56,3 +56,7 @@ GAN Stuff
 - nice simple blogpost on gans https://jonathan-hui.medium.com/gan-whats-generative-adversarial-networks-and-its-application-f39ed278ef09
 - Simple google intro to GAN's https://developers.google.com/machine-learning/gan
 - Audio GAN: https://magenta.tensorflow.org/gansynth
+
+Udemy Course link:
+----------------------
+https://www.udemy.com/course/artificial-intelligence-mastercalss/
