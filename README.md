@@ -4,6 +4,8 @@ Audio Project bits
 --------------------
 Potential Current Plan
 -----------
+Project Proposal shared google doc https://docs.google.com/document/d/1rYBPLHOS148kl6nmSgqdELuqsLe_-0z8uCnpsoIHHBw/edit?usp=sharing
+
 https://cloud.google.com/blog/products/data-analytics/try-spotifys-internal-os-tool-for-media-processing-in-beam
 1) Call and extract data from spotify (Klio) data 
 2) Learn how to create Spectograms from spotify audio data
