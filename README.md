@@ -45,19 +45,6 @@ Potential Applications
 Useful Links for each section
 -----------------------------------------------------------------------------------
 
-Spotify (Klio) dataset 
--------------
-- Quickstart info https://docs.klio.io/en/latest/quickstart/index.html
-- Klio Audio Separation and Spectogram Example : https://docs.klio.io/en/latest/userguide/examples/audio_spec.html
-- Klio Documentation : https://klio.readthedocs.io/en/latest/userguide/index.html
-- Klio Github : https://github.com/spotify/klio
-- Lecture on using Apache Beam in Python : https://www.youtube.com/watch?v=I1JUtoDHFcg&ab_channel=PyConSG
-- Google Pub/Sub tutorial (completely dull, but needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
-- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
-- google account for data storage login : email: ai.music.generation@gmail.com password: McConville
-- Docker & WSL 2 on Windows Download required for Klio https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
-- Docker tutorial for beginners : https://docker-curriculum.com/
-
 
 Classifying Audio papers(from Ben)
 --------------
@@ -71,12 +58,27 @@ TensorFLow (Python Library for Deep Learning/Neural Nets)
 - Creating spectograms and classifying audio on TensorFlow : https://www.tensorflow.org/tutorials/audio/simple_audio
 - Using DCGAN's on TensorFLow : https://www.tensorflow.org/tutorials/generative/dcgan
 
-GAN Stuff 
----------------
-- nice simple blogpost on gans https://jonathan-hui.medium.com/gan-whats-generative-adversarial-networks-and-its-application-f39ed278ef09
-- Simple google intro to GAN's https://developers.google.com/machine-learning/gan
-- Audio GAN: https://magenta.tensorflow.org/gansynth
-
 Udemy Course link:
 ----------------------
 https://www.udemy.com/course/artificial-intelligence-mastercalss/
+
+
+[Archived] GAN's
+---------------
+- nice simple blogpost https://jonathan-hui.medium.com/gan-whats-generative-adversarial-networks-and-its-application-f39ed278ef09
+- Simple google intro https://developers.google.com/machine-learning/gan
+- Audio GAN: https://magenta.tensorflow.org/gansynth
+
+[Archived] Spotify (Klio) dataset 
+-------------
+- Quickstart info https://docs.klio.io/en/latest/quickstart/index.html
+- Klio Audio Separation and Spectogram Example : https://docs.klio.io/en/latest/userguide/examples/audio_spec.html
+- Klio Documentation : https://klio.readthedocs.io/en/latest/userguide/index.html
+- Klio Github : https://github.com/spotify/klio
+- Lecture on using Apache Beam in Python : https://www.youtube.com/watch?v=I1JUtoDHFcg&ab_channel=PyConSG
+- Google Pub/Sub tutorial (completely dull, but needed to request datafrom spotify 'pipelines?') : https://console.cloud.google.com/cloudpubsub/topic/list?tutorial=pubsub_quickstart&project=api-project-958593700903
+- Apache Beam Walkthrough example : https://beam.apache.org/get-started/wordcount-example/
+- google account for data storage login : email: ai.music.generation@gmail.com password: McConville
+- Docker & WSL 2 on Windows Download required for Klio https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
+- Docker tutorial for beginners : https://docker-curriculum.com/
+
