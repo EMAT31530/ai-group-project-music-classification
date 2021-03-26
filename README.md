@@ -19,7 +19,7 @@ Steps:
 Want to solve the problem of finding the shortest route through a low (< 20) number of points in a multi-dimensional space. 
 We attempt this using a range of algorithms (Branch & Bound search algorithm, genetic algorithm using mlrose) and discuss their efficiency:
 
-# Travelling Salesperson Search/Dynamic Programming Algorithms
+### Travelling Salesperson Search/Dynamic Programming Algorithms
 -----
 
 https://arxiv.org/pdf/1805.04131.pdf
@@ -32,7 +32,7 @@ https://towardsdatascience.com/solving-travelling-salesperson-problems-with-pyth
 Project Proposal shared google doc https://docs.google.com/document/d/1rYBPLHOS148kl6nmSgqdELuqsLe_-0z8uCnpsoIHHBw/edit?usp=sharing
 ...
 
-Applications we could use the data for
+Potential Applications
 -------------
 #### A map of all of spotify's data - pretty cool (type in your fave artist and it'll show you their specific genre and all the most similar artists to them) http://everynoise.com/#otherthings
 
