@@ -4,6 +4,30 @@ Audio Project bits
 --------------------
 Potential Current Plan
 -----------
+Steps:
+
+
+1.   Take a collection of songs as input, 
+2.   Convert audio data into spectrogram images 
+3. Classify their genres using our CNN model trained on GTZAN
+4. Take each song's softmax output to obtain the calculated probability of each genre
+5. Interpret each soft-max output as position vectors in a multi-dimensional vector space, from 0-1 in each genre.
+6. Order the track listing in such a way to  approximate a minimal S(X), the sum of each distance (some chosen distance/cost function d(x,y)), between consecutive songs in the vector space.
+7.Output a track listing which gives our attempt at ordering songs into the most natural progression between genres
+
+
+
+
+Want to solve the problem of finding the shortest route through a low (< 20) number of points in a multi-dimensional space. 
+We attempt this using a range of algorithms (Branch & Bound search algorithm, genetic algorithm using mlrose) and discuss their efficiency:
+
+https://arxiv.org/pdf/1805.04131.pdf
+
+https://coral.ise.lehigh.edu/wiki/doku.php/travelling_salesman_problem
+
+https://en.wikipedia.org/wiki/Genetic_algorithm
+
+https://towardsdatascience.com/solving-travelling-salesperson-problems-with-python-5de7e883d847
 Project Proposal shared google doc https://docs.google.com/document/d/1rYBPLHOS148kl6nmSgqdELuqsLe_-0z8uCnpsoIHHBw/edit?usp=sharing
 
 https://cloud.google.com/blog/products/data-analytics/try-spotifys-internal-os-tool-for-media-processing-in-beam
