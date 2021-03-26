@@ -19,7 +19,8 @@ Steps:
 Want to solve the problem of finding the shortest route through a low (< 20) number of points in a multi-dimensional space. 
 We attempt this using a range of algorithms (Branch & Bound search algorithm, genetic algorithm using mlrose) and discuss their efficiency:
 
-#Travelling Salesperson Search/Dynamic Programming Algorithms
+# Travelling Salesperson Search/Dynamic Programming Algorithms
+-----
 
 https://arxiv.org/pdf/1805.04131.pdf
 
