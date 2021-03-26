@@ -2,7 +2,7 @@
 
 Audio Project bits
 --------------------
-Potential Current Plan
+Current Plan
 -----------
 Steps:
 
