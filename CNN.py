@@ -38,7 +38,8 @@ for g in genres:
     filenames = os.listdir(os.path.join(directory,f"{g}"))
     random.shuffle(filenames)
     test_files = filenames[0:30]
-    #os.makedirs(f'{data}/images_test/' + f'{g}')   # only need to run the following once to split the dataset
+    # Only need to run the following once to split the dataset
+    #os.makedirs(f'{data}/images_test/' + f'{g}')  
     #for f in test_files:
         #shutil.move(directory + f"{g}"+ "/" + f,f"{data}/images_test/" + f"{g}")
 
@@ -55,9 +56,10 @@ image_datagentest=data_gen.flow_from_directory(path,target_size=(288,432),color_
 
 
 Optimizer_str_to_func = {
-    'Adam' : tensorflow.keras.optimizers.Adam,
-    'Nadam' : tensorflow.keras.optimizers.Nadam,
-    'rmsprop' : tensorflow.keras.optimizers.rmsprop}
+    'Adam' : tf.keras.optimizers.Adam,
+    'Nadam' : tf.keras.optimizers.Nadam,
+    'RMSprop' : tf.keras.optimizers.RMSprop
+    }
 
 def get_f1(y_true, y_pred): 
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
@@ -71,7 +73,7 @@ def get_f1(y_true, y_pred):
 
 def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     dropout_rate = hp_space['dr']
-    learning_rate = hp_space['lr']
+    lr_mult = hp_space['lr_mult']
     opt = hp_space['optimizer']
     
     np.random.seed(10)
@@ -105,14 +107,42 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
       
     model = Model(inputs=X_input,outputs=X,name='GenreModel')
     
-    model.compile(optimizer=Optimizer_str_to_func[opt](learning_rate),
+    model_name = model.name()
+    
+    model.compile(optimizer=Optimizer_str_to_func[opt](learning_rate=0.001 * lr_mult),
                   loss='categorical_crossentropy',
                   metrics=['accuracy', get_f1])
-      
+    
+    history = model.fit_generator(image_datagentrain,
+                                  epochs=10,
+                                  validation_data=image_datagentest).history
+    
+    max_val_acc = np.max(history['val_accuracy'])
+    
+    results = {
+        # fmin function in hyperopt minimized 'loss' by default
+        'loss' : -max_val_acc,
+        'accuracy' : history['accuracy'],
+        'actual_loss' : history['loss'],
+        'val_ accuracy' : history['val_accuracy'],
+        'val_loss' : history['val_loss']
+        }
+    
+    return model, model_name, results
 
-    return model
 
-
+def base_GenreModel():
+    
+    # Starting hyperparameter values that will later be optimized
+    base_space = {
+    'lr' : 0.0005,
+    'dr' : 0.3,
+    'optimizer' : 'Adam',
+    }
+    
+    compile_fit_GenreModel(base_space)
+    
+    return
 
 
 
