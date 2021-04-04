@@ -54,7 +54,10 @@ image_datagentest=data_gen.flow_from_directory(path,target_size=(288,432),color_
 
 
 
-
+Optimizer_str_to_func = {
+    'Adam' : tensorflow.keras.optimizers.Adam,
+    'Nadam' : tensorflow.keras.optimizers.Nadam,
+    'rmsprop' : tensorflow.keras.optimizers.rmsprop}
 
 def get_f1(y_true, y_pred): 
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
@@ -69,6 +72,7 @@ def get_f1(y_true, y_pred):
 def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     dropout_rate = hp_space['dr']
     learning_rate = hp_space['lr']
+    opt = hp_space['optimizer']
     
     np.random.seed(10)
     X_input = Input(input_shape)
@@ -100,6 +104,10 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     X = Dense(classes, activation='softmax', name='fc' + str(classes), kernel_initializer = glorot_uniform(seed=9))(X)
       
     model = Model(inputs=X_input,outputs=X,name='GenreModel')
+    
+    model.compile(optimizer=Optimizer_str_to_func[opt](learning_rate),
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy', get_f1])
       
 
     return model
