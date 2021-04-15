@@ -24,7 +24,10 @@ from tensorflow.keras.initializers import glorot_uniform
 import tensorflow.keras.backend as K
 import os
 import random
+from hyperopt import STATUS_OK, STATUS_FAIL
 import shutil
+import uuid
+
 
 
 
@@ -53,12 +56,13 @@ path=f'{data}/images_test'
 image_datagentest=data_gen.flow_from_directory(path,target_size=(288,432),color_mode="rgba",batch_size=1,class_mode='categorical')
 
 
-
+INIT_L2 = 0.0007
 
 Optimizer_str_to_func = {
     'Adam' : tf.keras.optimizers.Adam,
     'Nadam' : tf.keras.optimizers.Nadam,
-    'RMSprop' : tf.keras.optimizers.RMSprop
+    'RMSprop' : tf.keras.optimizers.RMSprop,
+    'SGD' : tf.keras.optimizers.SGD
     }
 
 def get_f1(y_true, y_pred): 
@@ -72,31 +76,44 @@ def get_f1(y_true, y_pred):
 
 
 def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
+    K.set_learning_phase(1)
+    K.set_image_data_format('channels_last')
+    
     dropout_rate = hp_space['dr']
     lr_mult = hp_space['lr_mult']
     opt = hp_space['optimizer']
     
+    model_id = str(uuid.uuid4())[:5]  # Unique 5-charachter model ID, different every time the function is called
+    
     np.random.seed(10)
     X_input = Input(input_shape)
       
-    X = Conv2D(8,kernel_size=(3,3),strides=(1,1),kernel_initializer = glorot_uniform(seed=9))(X_input)
+    X = Conv2D(8,kernel_size=(3,3),strides=(1,1),
+               kernel_initializer = glorot_uniform(seed=9),
+               kernel_regularizer=tf.keras.regularizers.l2(INIT_L2 * hp_space['l2_mult']))(X_input)
     X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
+    X = Activation(hp_space['activation'])(X)
     X = MaxPooling2D((2,2))(X)
     
-    X = Conv2D(16,kernel_size=(3,3),strides = (1,1),kernel_initializer=glorot_uniform(seed=9))(X)
+    X = Conv2D(16,kernel_size=(3,3),strides = (1,1),
+               kernel_initializer=glorot_uniform(seed=9),
+               kernel_regularizer=tf.keras.regularizers.l2(INIT_L2 * hp_space['l2_mult']))(X)
     X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
+    X = Activation(hp_space['activation'])(X)
     X = MaxPooling2D((2,2))(X)
     
-    X = Conv2D(32,kernel_size=(3,3),strides = (1,1),kernel_initializer = glorot_uniform(seed=9))(X)
+    X = Conv2D(32,kernel_size=(3,3),strides = (1,1),
+               kernel_initializer = glorot_uniform(seed=9),
+               kernel_regularizer=tf.keras.regularizers.l2(INIT_L2 * hp_space['l2_mult']))(X)
     X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
+    X = Activation(hp_space['activation'])(X)
     X = MaxPooling2D((2,2))(X)
       
-    X = Conv2D(64,kernel_size=(3,3),strides=(1,1),kernel_initializer=glorot_uniform(seed=9))(X)
+    X = Conv2D(64,kernel_size=(3,3),strides=(1,1),
+               kernel_initializer=glorot_uniform(seed=9),
+               kernel_regularizer=tf.keras.regularizers.l2(INIT_L2 * hp_space['l2_mult']))(X)
     X = BatchNormalization(axis=-1)(X)
-    X = Activation('relu')(X)
+    X = Activation(hp_space['activation'])(X)
     X = MaxPooling2D((2,2))(X)
       
     X = Dropout(dropout_rate)(X)
@@ -107,7 +124,6 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
       
     model = Model(inputs=X_input,outputs=X,name='GenreModel')
     
-    model_name = model.name()
     
     model.compile(optimizer=Optimizer_str_to_func[opt](learning_rate=0.001 * lr_mult),
                   loss='categorical_crossentropy',
@@ -117,15 +133,23 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
                                   epochs=10,
                                   validation_data=image_datagentest).history
     
+    K.set_learning_phase(0)
+    
     max_val_acc = np.max(history['val_accuracy'])
+    
+    model_name = "mdoel_{}_{}".format(str(max_val_acc), model_id)
     
     results = {
         # fmin function in hyperopt minimized 'loss' by default
+        # metrics
         'loss' : -max_val_acc,
         'accuracy' : history['accuracy'],
         'actual_loss' : history['loss'],
         'val_ accuracy' : history['val_accuracy'],
-        'val_loss' : history['val_loss']
+        'val_loss' : history['val_loss'],
+        # Misc
+        'status' : STATUS_OK,
+        'space' : hp_space
         }
     
     return model, model_name, results
@@ -135,17 +159,16 @@ def base_GenreModel():
     
     # Starting hyperparameter values that will later be optimized
     base_space = {
-    'lr' : 0.0005,
+    'lr_mult' : 1.0,
     'dr' : 0.3,
     'optimizer' : 'Adam',
+    'l2_mult' : 1.0,
+    'activation' : 'relu'
     }
     
     compile_fit_GenreModel(base_space)
     
     return
-
-
-
 
 
 
