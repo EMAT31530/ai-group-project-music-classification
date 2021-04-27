@@ -38,34 +38,12 @@ def optimize(hype_space):
     # Save result
     save_result(model_name, result)
     
-    # K.clear_session()
+    K.clear_session()
     
     return result
 
 
 
-def run_a_trial():
-    # function that runs a single optimization
-    # first we check to see if theres any previous results saved
-    max_evals = nb_evals = 1
-    try:
-        trials = pickle.load(open('results.pkl', 'rb'))
-        max_evals = len(trials.trials) + nb_evals
-        print("Rerunning from {} trials to add another one.".format(len(trials.trials)))
-    except:
-        trials = Trials()
-        print('Starting new trial.')
-        
-    best = fmin(optimize,
-            space=space,
-            algo=tpe.suggest,
-            trials=trials,
-            max_evals=max_evals,
-            )
-    
-    pickle.dump(trials, open("results.pkl", "wb"))
-    
-    return
 
 
 
@@ -83,9 +61,9 @@ def save_result(model_name, result):
         
    
         
-def load_result(best_result_name):
+def load_result(result_name):
     #Load json from a path (directory + filename).
-    result_path = os.path.join(RESULTS_DIR, best_result_name)
+    result_path = os.path.join(RESULTS_DIR, result_name)
     with open(result_path, 'r') as f:
         return json.JSONDecoder().decode(
             f.read()
@@ -123,21 +101,34 @@ def print_json(result):
     ))
 
 
-def run_trail(evals):
-    trials = Trials()
-    
+def run_a_trial():
+    # function that runs a single optimization
+    # first we check to see if theres any previous results saved
+    max_evals = nb_evals = 1
+    try:
+        trials = pickle.load(open('results.pkl', 'rb'))
+        max_evals = len(trials.trials) + nb_evals
+        print("Rerunning from {} trials to add another one.".format(len(trials.trials)))
+    except:
+        trials = Trials()
+        print('Starting new trial.')
+        
     best = fmin(optimize,
             space=space,
             algo=tpe.suggest,
             trials=trials,
-            max_evals=evals,
+            max_evals=max_evals,
             )
     
-    return print(best)
+    pickle.dump(trials, open('results.pkl', 'wb'))   # saves trials object as pickled file
+    
+
+
 
 if __name__ == '__main__':
     # Runs optimization process indefinatley and saves results
-    run_trail(10)        
+    while True:            
+        run_a_trial()        
 
 
 
