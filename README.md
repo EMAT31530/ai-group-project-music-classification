@@ -54,6 +54,7 @@ Classifying Audio papers(from Ben)
 
 TensorFLow (Python Library for Deep Learning/Neural Nets)
 ---------------
+**TensorBoard**: http://localhost:6006/
 - Simple Intro tutorial walkthroughs : https://www.tensorflow.org/tutorials
 - Creating spectograms and classifying audio on TensorFlow : https://www.tensorflow.org/tutorials/audio/simple_audio
 - Using DCGAN's on TensorFLow : https://www.tensorflow.org/tutorials/generative/dcgan
@@ -88,5 +89,3 @@ https://www.kaggle.com/andradaolteanu/work-w-audio-data-visualise-classify-recom
 https://www.kaggle.com/vicky1999/music-genre-classification/notebook#Dataset
 https://towardsdatascience.com/music-genre-recognition-using-convolutional-neural-networks-cnn-part-1-212c6b93da76
 
-TensorBoard:
-http://localhost:6006/
