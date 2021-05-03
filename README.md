@@ -89,3 +89,6 @@ https://www.kaggle.com/andradaolteanu/work-w-audio-data-visualise-classify-recom
 https://www.kaggle.com/vicky1999/music-genre-classification/notebook#Dataset
 https://towardsdatascience.com/music-genre-recognition-using-convolutional-neural-networks-cnn-part-1-212c6b93da76
 
+Proposal link:
+--------------
+https://docs.google.com/document/d/1rYBPLHOS148kl6nmSgqdELuqsLe_-0z8uCnpsoIHHBw/edit?fbclid=IwAR0So7bDqO5Gz5K75-7PtImEQY1aUZmnVrYi9AE9ZTrzEqHqKqwhPYEALBg#heading=h.z6ne0og04bp5
