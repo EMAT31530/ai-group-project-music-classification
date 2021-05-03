@@ -92,3 +92,7 @@ https://towardsdatascience.com/music-genre-recognition-using-convolutional-neura
 Proposal link:
 --------------
 https://docs.google.com/document/d/1rYBPLHOS148kl6nmSgqdELuqsLe_-0z8uCnpsoIHHBw/edit?fbclid=IwAR0So7bDqO5Gz5K75-7PtImEQY1aUZmnVrYi9AE9ZTrzEqHqKqwhPYEALBg#heading=h.z6ne0og04bp5
+
+Overleaf link:
+--------------
+https://www.overleaf.com/project/605db31edd035009f4ded951
