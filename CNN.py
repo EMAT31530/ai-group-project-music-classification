@@ -42,8 +42,8 @@ for g in genres:
     random.shuffle(filenames)
     test_files = filenames[0:30]
     # Only need to run the following once to split the dataset
-    #os.makedirs(f'{data}/images_test/' + f'{g}')  
-    #for f in test_files:
+    # os.makedirs(f'{data}/images_test/' + f'{g}')  
+    # for f in test_files:
         #shutil.move(directory + f"{g}"+ "/" + f,f"{data}/images_test/" + f"{g}")
 
 
@@ -78,11 +78,7 @@ def get_f1(y_true, y_pred):
 def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     K.set_learning_phase(1)
     K.set_image_data_format('channels_last')
-    
-    dropout_rate = hp_space['dr']
-    lr_mult = hp_space['lr_mult']
-    opt = hp_space['optimizer']
-    
+        
     model_id = str(uuid.uuid4())[:5]  # Unique 5-charachter model ID, different every time the function is called
     
     np.random.seed(10)
@@ -116,7 +112,7 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     X = Activation(hp_space['activation'])(X)
     X = MaxPooling2D((2,2))(X)
       
-    X = Dropout(dropout_rate)(X)
+    X = Dropout(hp_space['dr'])(X)
     
     X = Flatten()(X)
       
@@ -125,7 +121,7 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     model = Model(inputs=X_input,outputs=X,name='GenreModel')
     
     
-    model.compile(optimizer=Optimizer_str_to_func[opt](learning_rate=0.001 * lr_mult),
+    model.compile(optimizer=Optimizer_str_to_func[hp_space['optimizer']](learning_rate=0.001 * hp_space['lr_mult']),
                   loss='categorical_crossentropy',
                   metrics=['accuracy', get_f1])
     
@@ -141,6 +137,7 @@ def compile_fit_GenreModel(hp_space, input_shape = (288,432,4), classes=10):
     
     results = {
         # fmin function in hyperopt minimized 'loss' by default
+        
         # metrics
         'loss' : -max_val_acc,
         'accuracy' : history['accuracy'],
