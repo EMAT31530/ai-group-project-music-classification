@@ -1,0 +1,17 @@
+genres = 'blues'
+genres = genres.split()
+
+
+
+import librosa.display
+
+for g in genres:
+  j = 0
+  print(g)
+  for filename in os.listdir(os.path.join('Data/audio3sec',f"{g}")):
+    song  =  os.path.join(f'Data/audio3sec/{g}',f'{filename}')
+    j = j+1
+    y, sr = librosa.load(song)
+    S = librosa.feature.melspectrogram(y=y, sr=sr)
+    librosa.display.specshow(librosa.power_to_db(S, ref=np.max))
+    plt.savefig(f'Data/spectrograms3secXX/train/{g}/{g+str(j)}.png',bbox_inches='tight',transparent=True, pad_inches=0)
