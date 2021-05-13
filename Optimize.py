@@ -11,6 +11,7 @@ from hyperopt import hp, fmin, tpe, Trials
 import os
 import keras.backend as K
 from CNN import compile_fit_GenreModel
+from CNN_final_test import GenreModel
 import pickle
 import json
 from bson import json_util
@@ -19,13 +20,21 @@ space = {
     # Loguniform distribustion to find appropriate learning rate multiplier
     'lr_mult' : hp.loguniform('lr_mult', -0.5, 0.5),
     # Uniform distribustion to find appropriate dropout rate
-    'dr' : hp.uniform('dr',0.0,0.5),
+    'dropout' : hp.uniform('dropout',0.0,0.5),
     # To find the best optimizer
-    'optimizer' : hp.choice('optimizer', ['Adam', 'Nadam', 'RMSprop','SGD']),
+    'optimizer' : hp.choice('optimizer', ['Adam', 'Nadam', 'RMSprop']),
     # l2 weight regularization multiplier
     'l2_mult' : hp.loguniform('l2_mult', -1.3, 1.3),
     # Choice of suitable activations
-    'activation' : hp.choice('activation', ['relu', 'elu'])
+    'activation' : hp.choice('activation', ['relu', 'elu']),
+    # batch normalization or not
+    'use_BN' : hp.choice('use_BN', [True, False]),
+    # size of the n x n kernel used for each filter in conv layers
+    'kern_size' : hp.quniform('kern_size', 2, 4, 1),      # Haven't added to model yet
+    # pooling type max or avg
+    'pooling' : hp.choice('pooling', ['avg', 'max']),
+    # use batch normalization
+    'dropout_conv' : hp.choice('dropout_conv', [None, hp.uniform('conv_drop_rate', 0.0, 0.35)])
 }
 
 
@@ -34,7 +43,7 @@ RESULTS_DIR = 'Optimization_results'
 
 def optimize(hype_space):
     
-    model, model_name, result = compile_fit_GenreModel(hype_space)
+    model, model_name, result = GenreModel(hype_space)
     # Save result
     save_result(model_name, result)
     
