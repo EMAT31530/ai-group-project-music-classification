@@ -1,0 +1,7 @@
+train_dir = "Data/spectrograms3sec/train/"
+train_datagen = ImageDataGenerator()
+train_generator = train_datagen.flow_from_directory(train_dir,target_size=(128,130),class_mode='categorical',batch_size=128)
+
+validation_dir = "Data/spectrograms3sec/test/"
+vali_datagen = ImageDataGenerator()
+vali_generator = vali_datagen.flow_from_directory(validation_dir,target_size=(128,130),class_mode='categorical',batch_size=128)
