@@ -104,3 +104,7 @@ https://drive.google.com/drive/folders/1oJK4kUVRnxD1mxlymgunMvg0h_wXRGK-?usp=sha
 final dataset:
 
 https://drive.google.com/drive/folders/1Ab0V9YsywN1EzACeX_bmO4A1OL5WIuL1?usp=sharing
+
+Link to Spotify Playlist Dataset:
+----------------------
+https://drive.google.com/drive/folders/18it5Kuzlo5OPvcxvOxrve-7-bl9t4XeE?usp=sharing
