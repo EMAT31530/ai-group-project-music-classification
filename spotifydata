@@ -1,0 +1,63 @@
+path = 'Data/images'
+list_subfolders_with_paths = [f.path for f in os.scandir(path) if f.is_dir()]
+list_subfolder_name_with_paths = [f.name for f in os.scandir(path) if f.is_dir()]
+list_subfolders_with_paths
+list_subfolder_name_with_paths
+
+
+from keras.preprocessing import image
+from keras.preprocessing.image import load_img,img_to_array
+def predict(track_name,model):
+  track_path = os.path.join(path, track_name)
+  prediction = np.zeros((10,10))
+  i = 0
+  #image = image_data.resize((288,432))
+  for file_name in os.listdir(track_path):
+    file_path = os.path.join(path, track_name, file_name)
+    image_data = load_img(file_path,color_mode='rgb',target_size=(128,130))
+    image = img_to_array(image_data)
+
+    image = np.reshape(image,(1,128,130,3))
+
+    prediction[i,:] = model.predict(image)#/255)  #.reshape((10,)) 
+
+    #prediction = prediction.reshape((10,)) 
+    #print(np.argmax(prediction[i,:]))
+    i += 1
+
+
+  predict_avg = np.average(prediction, axis=0)
+  predict_avg = np.around(predict_avg, decimals = 4)
+  genre_class = np.argmax(predict_avg)
+
+
+
+
+  
+  return track_name, genre_class, predict_avg
+  
+  
+  
+  
+track_name_list = []
+genre_class_list = []
+predict_avg_list = []
+for subdir in os.listdir(path):
+  #print(subdir)
+  if not subdir == ".DS_Store":
+      track_name, genre_class, predict_avg = predict(subdir,model)
+      print(track_name, genre_class, predict_avg)
+      track_name_list.append(track_name)
+      genre_class_list.append(genre_class)
+      predict_avg_list.append(predict_avg)
+      
+      
+ 
+df_tracks = pd.DataFrame({'track_name':track_name_list,'genre_class':genre_class_list,'predict_avg':predict_avg_list})
+print(df_tracks.shape)
+df_tracks.head()
+
+arr = df_tracks['predict_avg'].to_numpy()
+
+np.stack(arr).astype(None)
+  
