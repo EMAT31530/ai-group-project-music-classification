@@ -1,0 +1,45 @@
+validation_dir = "Data/spectrograms3secXX/test/"
+vali_datagen = tf.keras.preprocessing.image.ImageDataGenerator(1./255)
+vali_generator = vali_datagen.flow_from_directory(validation_dir,target_size=(128,130),class_mode='categorical',batch_size=1000)
+
+
+
+img, labels = next(vali_generator)
+truelabel = np.zeros(1000,)
+for i in range(len(labels)):
+  truelabel[i] = (np.argmax(labels[i]))
+truelabel
+
+
+
+predictions = model.predict(vali_generator)
+pred = np.zeros(1000,)
+for i in range(len(labels)):
+  pred[i] = (np.argmax(predictions[i]))
+pred
+
+
+
+from sklearn.metrics import confusion_matrix
+
+y_pred = np.argmax(predictions)
+
+predictions
+
+genres = 'blues classical country disco hiphop jazz metal pop reggae rock'
+genres = genres.split()
+
+CF = confusion_matrix(truelabel, pred)
+
+import seaborn as sn
+import pandas as pd
+import matplotlib.pyplot as plt
+df_cm = pd.DataFrame(CF, index = [g for g in genres], columns = [g for g in genres])
+plt.figure(figsize = (11,11))
+sn.set(font_scale=1.4)
+sn.heatmap(df_cm, annot=True, cmap="RdPu",annot_kws={"size": 16})
+
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted Label')
+plt.ylabel('Actual Label')
+#plt.savefig(f'Data/Confusion_matrix_X')
