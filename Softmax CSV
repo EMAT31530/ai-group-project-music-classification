@@ -1,0 +1,46 @@
+path= ######### Wherever the spotify song files are kept 
+list_subfolders_with_paths = [f.path for f in os.scandir(path) if f.is_dir()]
+list_subfolders_name_with_paths = [f.name for f in os.scandir(path) if f.is_dir()]
+list_subfolders_with_paths
+list_subfolders_name_with_paths
+
+num_entries = len(list_subfolders_with_paths)
+  
+track_name_list = []
+genre_class_list = np.zeros(num_entries)
+predict_avg_list = np.zeros((num_entries,10))
+#predict_avg_array = np.zeros((,10))
+i = 0
+for subdir in os.listdir(path):
+  #print(subdir)
+  if not subdir == ".DS_Store":
+      track_name, genre_class, predict_avg = predict(subdir,model)
+      print(track_name, genre_class, predict_avg)
+      track_name_list.append(track_name)
+      genre_class_list[i] = (genre_class)
+      predict_avg_list[i,:]=predict_avg
+      print()
+      i+=1
+      
+      
+
+########## Predict and Add Results to a Dataframe ################
+playlist_predictions = pd.DataFrame(predict_avg_list, index = list_subfolders_name_with_paths, columns=sorted(genres))
+playlist_predictions  
+
+genre_class_list_words = genre_class_list
+for j in range(len(genres)):
+  genre = sorted(genres)[j]  
+  genre_class_list_words = [genre if j==i else i for i in genre_class_list_words]
+
+  genre_class_list_words
+
+playlist_predictions['Predicted Genre'] = genre_class_list_words
+
+cols = list(playlist_predictions)
+cols.insert(0, cols.pop(cols.index('Predicted Genre')))
+playlist_predictions = playlist_predictions.loc[:, cols]
+
+############ Download Data as CSV ##################
+playlist_predictions.to_csv('optimised_predictions.csv')
+files.download('optimised_predictions.csv')
